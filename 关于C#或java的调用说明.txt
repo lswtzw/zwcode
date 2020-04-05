@@ -1,0 +1,39 @@
+弱耦合调用说明:
+
+模型训练好以后,高级语言可以通过调用可执行文件的方式来进行.
+以C#为例
+
+一.参数介绍:
+darknet.exe unet <train/test/preload> <data filename> <cfg filename> [weights filename] [image file name]
+上面是进程调用时的传参介绍
+train是训练模型,test是识别,preload是预装模型,data filename是路径配置文件,cfg filename是模型配置文件,后面是权重(模型)文件
+
+
+二.C#编程实现,先用进程异步调用的方式(*非阻塞*),运行:
+
+只是让darknet进程预装PRELOAD模型,不识别图像,将来等wdarknet_call.exe发一次指令,就识别一次
+目的:节约了加载时间的快速识别
+
+"../darknet/build/darknet/x64/darknet.exe" unet preload data.txt unet++_cfg.txt  backup/unet++_cfg.backup
+
+
+
+二.用程序把要识别的图片copy入data.txt文件中指定的TEST目录下,取名为1.jpg,并删除之前的识别结果文件如pred_1.jpg
+   再用*阻塞*的方式(同步进程调用),运行:
+
+rem #说明:如果下面的命令参数为0,则结束darknet进程.
+rem #说明:如果下面的命令参数为1,则让等待中的darknet进程执行一次识别(模型已预装)
+rem #说明:darknet进程会对data.txt文件中指定的TEST目录做单张或多张识别
+rem #     这时,请设置data.txt中的test_start_num=1 test_end_num=1,则识别文件名就是1.jpg,结果文件名就是pred_1.jpg 
+
+
+"../darknet/build/darknet/x64/wdarknet_call.exe" 1
+
+
+rem #当*阻塞*调用结束时,识别就完成了,可以去读取pred_1.jpg
+rem #如果是批量识别,则请设置 data.txt中的test_start_num=10 test_end_num=20,然后复制进入的文件取名为10.jpg,11.jpg,12.jpg...
+rem #最后输出文件就是pred_10.jpg,pred_11.jpg,pred_12.jpg...
+rem #在进程调用时,可以设置这些cmd调用窗口为sw_hide属性,不可见窗口.
+
+
+

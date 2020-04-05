@@ -1,0 +1,2 @@
+wdarknet_call 1
+pause
