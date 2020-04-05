@@ -1,0 +1,27 @@
+
+image_type_string      = .jpg
+#参数说明: 全局输入图像文件类型: .jpg或.png,但识别结果文件目前始终是.jpg
+
+train_list_file        = c:/unet_data/train.list.txt
+#参数说明: 文件名列表,注意,每行一个文件名,文件名不带后缀,也不带路径,例如: 1001 将同时对应下面两个目录下的同名文件
+
+train_image_path       = c:/unet_data/train/image/
+#参数说明: 图像文件的路径,最后要加/,里面文件的文件名,必须和下一目录的文件名对应相同!
+
+train_label_image_path = c:/unet_data/train/label/
+#参数说明: 二值label图像的路径,最后要加/,里面文件的文件名,必须和上一目录的文件名对应相同!
+
+backup                 = c:/unet_data/backup/
+#参数说明: 权重文件保存路径,会于下生成.backup和.weights两种后缀的权重模型文件,是一样的用法.
+
+#下面是批量test(pred)识别的参数设置,只训练可以不用理它,如果目录下只放一张图,它也可以只识别一张.
+test_image_path        = c:/unet_data/test/
+test_start_num         = 10
+test_end_num           = 35
+#参数说明: 当执行命令行: darknet unet test data.txt unet_cfg.txt 时,因为没有输入目标图像文件名,所以:
+#所以认为是一个批量处理,将对上面目录下的文件进行批量识别,文件名从0.jpg开始,到49.jpg结束,没有对应文件就会跳过继续
+#如果test_end_num如果设置成10000,则最后一个处理的图像文件就是10000.jpg
+#如果只想识别test_image_path下的一张图像如15.jpg,则最好是设置test_start_num=test_end_num=15,这样最快.
+
+
+
