@@ -3,9 +3,9 @@
 
 
 运行环境和运行条件:
-win8/win10 -----(最好是有4GB显存以上的独立显卡,并安装好了CUDA开发环境,未安装只能用CPU版本)
-本项目需要先安装opencv320-----(最好是opencv320,与开发机保持一致,其它版本估计也行)
-最后:请把opencv320下的opencv_world320.dll复制到可执行文件目录下darknet/build/darknet/x64/
+win8/win10 -----(最好是有4GB显存以上的独立显卡,并安装好了CUDA开发环境,未安装只能用CPU版本);
+本项目需要先安装opencv320-----(最好是opencv320,与开发机保持一致,其它版本估计也行);
+最后:请把opencv320下的opencv_world320.dll复制到可执行文件目录下(darknet/build/darknet/x64/);
      首次使用建议先跑通darknet_no_gpu.exe这个版本(CPU版本,配置要求低).
 
 
