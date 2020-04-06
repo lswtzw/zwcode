@@ -17,9 +17,9 @@ backup                 = backup/
 #下面是批量test(pred)识别的参数设置,只训练可以不用理它,如果目录下只放一张图,它也可以只识别一张.
 test_image_path        = test/
 test_start_num         = 10
-test_end_num           = 35
+test_end_num           = 50
 #参数说明: 当执行命令行: darknet unet test data.txt unet_cfg.txt 时,因为没有输入目标图像文件名,所以:
-#所以认为是一个批量处理,将对上面目录下的文件进行批量识别,文件名从0.jpg开始,到49.jpg结束,没有对应文件就会跳过继续
+#所以认为是一个批量处理,将对上面目录下的文件进行批量识别,文件名从10.jpg开始,到50.jpg结束,没有对应文件就会跳过继续
 #如果test_end_num如果设置成10000,则最后一个处理的图像文件就是10000.jpg
 #如果只想识别test_image_path下的一张图像如15.jpg,则最好是设置test_start_num=test_end_num=15,这样最快.
 
